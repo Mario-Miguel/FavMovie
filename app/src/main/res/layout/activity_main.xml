@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <EditText
+        android:id="@+id/tx_editArgumento"
+        android:layout_width="214dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/HintArgumento"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="@+id/tx_argumento"
+        app:layout_constraintTop_toBottomOf="@+id/tx_argumento" />
+
+    <EditText
+        android:id="@+id/tx_editDuracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/HintDuracion"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/spn_categoria"
+        app:layout_constraintTop_toBottomOf="@+id/spn_categoria" />
+
+    <EditText
+        android:id="@+id/tx_editFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/HintFecha"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/tx_editDuracion"
+        app:layout_constraintTop_toBottomOf="@+id/tx_editDuracion" />
+
+    <TextView
+        android:id="@+id/tx_titulo"
+        android:layout_width="137dp"
+        android:layout_height="26dp"
+        android:text="@string/Titulo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.092" />
+
+    <EditText
+        android:id="@+id/tx_editTitulo"
+        android:layout_width="219dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/HintTitulo"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/tx_titulo"
+        app:layout_constraintTop_toBottomOf="@+id/tx_titulo" />
+
+    <Spinner
+        android:id="@+id/spn_categoria"
+        android:layout_width="211dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="12dp"
+        android:dropDownWidth="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/tx_categoria"
+        app:layout_constraintTop_toBottomOf="@+id/tx_categoria" />
+
+    <TextView
+        android:id="@+id/tx_argumento"
+        android:layout_width="158dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/Argumento"
+        app:layout_constraintStart_toStartOf="@+id/tx_editTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/tx_editTitulo" />
+
+    <TextView
+        android:id="@+id/tx_categoria"
+        android:layout_width="156dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/Categoria"
+        app:layout_constraintStart_toStartOf="@+id/tx_editArgumento"
+        app:layout_constraintTop_toBottomOf="@+id/tx_editArgumento" />
+
+    <ImageButton
+        android:id="@+id/btn_categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/spn_categoria"
+        app:layout_constraintStart_toEndOf="@+id/spn_categoria"
+        app:layout_constraintTop_toTopOf="@+id/spn_categoria"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

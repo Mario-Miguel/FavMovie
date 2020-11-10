@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">FavMov</string>
+
+    <string name="onStart">onStart</string>
+    <string name="onRestart">onRestart</string>
+    <string name="onPause">onPause</string>
+    <string name="onStop">onStop</string>
+    <string name="onCreate">onCreate</string>
+    <string name="onDestroy">onDestroy</string>
+    <string name="onResume">onResume</string>
+    <string name="Titulo">Titulo</string>
+    <string name="HintTitulo">Título de la película</string>
+    <string name="Argumento">Argumento</string>
+    <string name="HintArgumento">Sinapsis de la película</string>
+    <string name="Categoria">Categoría</string>
+    <string name="HintDuracion">Duración</string>
+    <string name="HintFecha">Fecha de estreno</string>
+    <string name="Guardar">Guardar</string>
+
+    <string name="msg_guardado">Pelicula guardada</string>
+    <string name="msg_crear_categoria">Se va a crear una nueva categoria</string>
+    <string name="msg_modif_categoria">Se va a modificar la categoría seleccionada</string>
+    <string name="msg_accion_cancelada">Accion cancelada</string>
+    <string name="msg_accion_aceptada">Accion aceptada</string>
+    <string name="msg_error_campo_vacio">Este campo no puede estar vacío</string>
+    <string name="msg_error_categoria">Categoría sin definir</string>
+    <string name="msg_error_fecha">Error en el campo Fecha</string>
+    <string name="msg_error_duracion">Error en el campo Duracion</string>
+    <string name="msg_error_sinapsis">Error en el campo Sinapsis</string>
+    <string name="msg_error_titulo">Error en el campo Titulo</string>
+    <string name="CategoriaTituloCreacion">Creación de nueva categoría</string>
+    <string name="CategoriaTituloModificacion">Modificación de categoría existente</string>
+    <string name="CategoriaNombre">Nombre de la Categoría</string>
+    <string name="CategoriaHintNombre">Nombre de la Categoría</string>
+    <string name="CategoriaDescripcion">Descripción de la Categoría</string>
+    <string name="CategoriaHintDescripcion">Descripción Categoría</string>
+    <string name="title_activity_show_movie">ScrollingActivity</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="desc_imagen_fondo">Imagen de fondo pelicula</string>
+    <string name="desc_caratula">Carátula de la película</string>
+    <string name="menu_item_compartir">Compartir</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="error_conexion">No tienes conexión actualmente</string>
+    <string name="subject_compartir">Te comparto la siguiente peli:</string>
+    <string name="title_info">Información</string>
+    <string name="title_actores">Actores</string>
+    <string name="title_argumento">Argumento</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_item_ajustes">Ajustes</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="categoria_titulo">Elige la categoria</string>
+    <string name="imagen_actor">Imagen del actor</string>
+    <string name="nombre_actor">Nombre del actor</string>
+    <string name="nombre_personaje">Nombre del personaje</string>
+</resources>

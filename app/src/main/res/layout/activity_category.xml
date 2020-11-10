@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CategoryActivity">
+
+    <EditText
+        android:id="@+id/txCategoriaEditName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/CategoriaHintNombre"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/txCategoriaNombre"
+        app:layout_constraintTop_toBottomOf="@+id/txCategoriaNombre" />
+
+    <EditText
+        android:id="@+id/txCategoriaEditDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/CategoriaHintDescripcion"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/txCategoriaDescripcion"
+        app:layout_constraintTop_toBottomOf="@+id/txCategoriaDescripcion" />
+
+    <TextView
+        android:id="@+id/txCategoriaNombre"
+        android:layout_width="230dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/CategoriaNombre"
+        app:layout_constraintStart_toStartOf="@+id/txCategoriaTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/txCategoriaTitulo" />
+
+    <TextView
+        android:id="@+id/txCategoriaTitulo"
+        android:layout_width="337dp"
+        android:layout_height="30dp"
+        android:text="@string/CategoriaTituloCreacion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.074" />
+
+    <TextView
+        android:id="@+id/txCategoriaDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="@string/CategoriaDescripcion"
+        app:layout_constraintStart_toStartOf="@+id/txCategoriaEditName"
+        app:layout_constraintTop_toBottomOf="@+id/txCategoriaEditName" />
+
+    <Button
+        android:id="@+id/btCategoriaCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/btCategoriaOk"
+        app:layout_constraintEnd_toStartOf="@+id/btCategoriaOk"
+        app:layout_constraintTop_toTopOf="@+id/btCategoriaOk" />
+
+    <Button
+        android:id="@+id/btCategoriaOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@android:string/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939" />
+</androidx.constraintlayout.widget.ConstraintLayout>
