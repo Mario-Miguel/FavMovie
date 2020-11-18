@@ -16,7 +16,7 @@ import java.util.List;
 
 import es.uniovi.eii.favmov.adapters.ListaActoresAdapter;
 import es.uniovi.eii.favmov.R;
-import es.uniovi.eii.favmov.datos.ActorsDataSource;
+import es.uniovi.eii.favmov.datos.bd.ActorsDataSource;
 import es.uniovi.eii.favmov.model.Actor;
 
 public class ActoresFragment extends Fragment {
@@ -46,6 +46,8 @@ public class ActoresFragment extends Fragment {
         actorsDataSource.open();
         listActores = actorsDataSource.actoresParticipantes(id_pelicula);
         actorsDataSource.close();
+
+//        listActores = args.getParcelableArrayList("listActores");
 
 
         ListaActoresAdapter laAdapter = new ListaActoresAdapter(listActores,

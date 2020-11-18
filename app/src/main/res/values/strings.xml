@@ -69,4 +69,5 @@
     <string name="imagen_actor">Imagen del actor</string>
     <string name="nombre_actor">Nombre del actor</string>
     <string name="nombre_personaje">Nombre del personaje</string>
+    <string name="error_trailer">Trailer no disponible</string>
 </resources>

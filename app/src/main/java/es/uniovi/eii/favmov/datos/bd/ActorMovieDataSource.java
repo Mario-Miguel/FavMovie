@@ -1,4 +1,4 @@
-package es.uniovi.eii.favmov.datos;
+package es.uniovi.eii.favmov.datos.bd;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uniovi.eii.favmov.model.Actor;
 import es.uniovi.eii.favmov.model.RepartoPelicula;
 
 public class ActorMovieDataSource {

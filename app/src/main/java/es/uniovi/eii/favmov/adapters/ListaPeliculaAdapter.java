@@ -68,10 +68,15 @@ public class ListaPeliculaAdapter extends RecyclerView.Adapter<ListaPeliculaAdap
 
         // asignar valores a los componentes
         public void bindUser(final Pelicula pelicula, final OnItemClickListener listener) {
-            titulo.setText(pelicula.getTitulo()+" "+pelicula.getFecha());
+            titulo.setText(pelicula.getTitulo()+" ("+pelicula.getFecha().substring(0,4)+")");
             //fecha.setText(pelicula.getFecha());
             fecha.setText(pelicula.getFecha());
             // cargar imagen
+
+            if(!pelicula.getUrlCaratula().isEmpty())
+                Picasso.get().load(pelicula.getUrlCaratula()).into(imagen);
+            else
+                imagen.setImageResource(R.drawable.pelicula_sin_imagen);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
@@ -80,7 +85,7 @@ public class ListaPeliculaAdapter extends RecyclerView.Adapter<ListaPeliculaAdap
                 }
             });
 
-            Picasso.get().load(pelicula.getUrlCaratula()).into(imagen);
+
         }
     }
 }

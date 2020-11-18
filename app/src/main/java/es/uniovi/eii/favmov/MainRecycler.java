@@ -19,10 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,13 +29,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.uniovi.eii.favmov.adapters.ListaPeliculaAdapter;
-import es.uniovi.eii.favmov.datos.ActorMovieDataSource;
-import es.uniovi.eii.favmov.datos.ActorsDataSource;
-import es.uniovi.eii.favmov.datos.MovieDataSource;
+import es.uniovi.eii.favmov.datos.bd.ActorMovieDataSource;
+import es.uniovi.eii.favmov.datos.bd.ActorsDataSource;
+import es.uniovi.eii.favmov.datos.bd.MovieDataSource;
+import es.uniovi.eii.favmov.datos.server.ServerDataMapper;
+import es.uniovi.eii.favmov.datos.server.movielist.MovieData;
+import es.uniovi.eii.favmov.datos.server.movielist.MovieListResult;
 import es.uniovi.eii.favmov.model.Actor;
 import es.uniovi.eii.favmov.model.Categoria;
 import es.uniovi.eii.favmov.model.Pelicula;
 import es.uniovi.eii.favmov.model.RepartoPelicula;
+import es.uniovi.eii.favmov.remote.ApiUtils;
+import es.uniovi.eii.favmov.remote.TheMovieDBApi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static es.uniovi.eii.favmov.remote.ApiUtils.API_KEY;
+import static es.uniovi.eii.favmov.remote.ApiUtils.LANGUAGE;
 
 public class MainRecycler extends AppCompatActivity {
 
@@ -64,6 +72,8 @@ public class MainRecycler extends AppCompatActivity {
     //Objetos notificaciones
     NotificationCompat.Builder mBuilder;
     NotificationManager mNotificationManager;
+    //Cliente para hacer las peticiones
+    private TheMovieDBApi peticionApi;
 
 
     @Override
@@ -92,10 +102,53 @@ public class MainRecycler extends AppCompatActivity {
 //            }
 //        });
 
-        ConstruirNotificacion(getString(R.string.app_name), "Acceso a la BD de peliculas");
-        DownloadFilesTask task = new DownloadFilesTask();
-        task.execute();
+//        ConstruirNotificacion(getString(R.string.app_name), "Acceso a la BD de peliculas");
+//        DownloadFilesTask task = new DownloadFilesTask();
+//        task.execute();
 
+        peticionApi = ApiUtils.createTheMovieDBApi();
+        realizarPeticionPeliculasPopulares(peticionApi);
+
+    }
+
+    private void realizarPeticionPeliculasPopulares(TheMovieDBApi peticionApi) {
+        Call<MovieListResult> call = peticionApi.getMoviesList("popular", API_KEY, LANGUAGE, 1);
+
+        call.enqueue(new Callback<MovieListResult>(){
+
+            @Override
+            public void onResponse(Call<MovieListResult> call, Response<MovieListResult> response) {
+                switch(response.code()){
+                    case 200: //Respuesta válida
+                        MovieListResult data = response.body();
+                        List<MovieData> listMovieData = data.getMovieData();
+                        Log.d("realizarPetPopulares", "ListaDatosPeliculas: "+listMovieData);
+
+                        //Convertir datos de la api a clases del modelo
+
+                        listPelicula = ServerDataMapper.convertMovieListToDomain(listMovieData);
+
+                        //Esto ye super cutre pero ye pa presentar los datos
+                        listaPeliculasView = (RecyclerView) findViewById(R.id.recyclerView);
+                        listaPeliculasView.setHasFixedSize(true);
+
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                        listaPeliculasView.setLayoutManager(layoutManager);
+
+
+                        updateListaPeliculas();
+                        break;
+                    default:
+                        call.cancel();
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieListResult> call, Throwable t) {
+                Log.e("ErrorPetPopulares", String.valueOf(t.getStackTrace()));
+            }
+        });
     }
 
 

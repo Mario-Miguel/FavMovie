@@ -1,4 +1,4 @@
-package es.uniovi.eii.favmov.datos;
+package es.uniovi.eii.favmov.datos.bd;
 
 import android.content.ContentValues;
 import android.content.Context;
