@@ -1,5 +1,6 @@
 package es.uniovi.eii.favmov.remote;
 
+import es.uniovi.eii.favmov.datos.server.credits.Credits;
 import es.uniovi.eii.favmov.datos.server.moviedetails.MovieDetail;
 import es.uniovi.eii.favmov.datos.server.movielist.MovieListResult;
 import retrofit2.Call;
@@ -29,4 +30,13 @@ public interface TheMovieDBApi {
             @Query("language") String language,
             @Query("append_to_response") String videos
     );
+
+    //Actores de una pelicula
+    @GET("movie/{movie_id}/credits")
+    Call<Credits> getMovieCredits(
+            @Path("movie_id") int id,
+            @Query("api_key") String apiKey,
+            @Query("language") String language
+    );
+
 }

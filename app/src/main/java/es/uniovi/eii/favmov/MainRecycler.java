@@ -129,14 +129,8 @@ public class MainRecycler extends AppCompatActivity {
                         listPelicula = ServerDataMapper.convertMovieListToDomain(listMovieData);
 
                         //Esto ye super cutre pero ye pa presentar los datos
-                        listaPeliculasView = (RecyclerView) findViewById(R.id.recyclerView);
-                        listaPeliculasView.setHasFixedSize(true);
+                        mostrarListaPeliculas();
 
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                        listaPeliculasView.setLayoutManager(layoutManager);
-
-
-                        updateListaPeliculas();
                         break;
                     default:
                         call.cancel();
@@ -222,6 +216,22 @@ public class MainRecycler extends AppCompatActivity {
     }
 
     private void updateListaPeliculas() {
+        ListaPeliculaAdapter peliculaAdapter = new ListaPeliculaAdapter(listPelicula, new ListaPeliculaAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Pelicula pelicula) {
+                clickOnItem(pelicula);
+            }
+        });
+        listaPeliculasView.setAdapter(peliculaAdapter);
+
+    }
+
+    private void mostrarListaPeliculas() {
+        listaPeliculasView = (RecyclerView) findViewById(R.id.recyclerView);
+        listaPeliculasView.setHasFixedSize(true);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        listaPeliculasView.setLayoutManager(layoutManager);
         ListaPeliculaAdapter peliculaAdapter = new ListaPeliculaAdapter(listPelicula, new ListaPeliculaAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Pelicula pelicula) {

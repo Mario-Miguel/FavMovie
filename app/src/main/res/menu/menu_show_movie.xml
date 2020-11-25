@@ -7,9 +7,11 @@
         android:icon="@android:drawable/ic_menu_share"
         android:title="@string/menu_item_compartir"
         app:showAsAction="ifRoom" />
-<!--    <item-->
-<!--        android:id="@+id/action_settings"-->
-<!--        android:orderInCategory="100"-->
-<!--        android:title="@string/action_settings"-->
-<!--        app:showAsAction="never" />-->
+
+    <item
+        android:id="@+id/hacer_favorita"
+        android:icon="@drawable/like_gris"
+        android:title="@string/menu_item_hacer_favorita"
+        app:showAsAction="ifRoom" />
+
 </menu>

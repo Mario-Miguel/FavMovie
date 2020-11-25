@@ -70,4 +70,15 @@
     <string name="nombre_actor">Nombre del actor</string>
     <string name="nombre_personaje">Nombre del personaje</string>
     <string name="error_trailer">Trailer no disponible</string>
+    <string name="title_activity_main_principal">MainActivityPrincipal</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_fav">Favoritas</string>
+    <string name="menu_popular">Populares</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_item_hacer_favorita">Favorita</string>
 </resources>

@@ -1,4 +1,4 @@
-package es.uniovi.eii.favmov.fragments;
+package es.uniovi.eii.favmov.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

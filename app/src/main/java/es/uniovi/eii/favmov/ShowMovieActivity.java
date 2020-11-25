@@ -1,21 +1,17 @@
 package es.uniovi.eii.favmov;
 
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.Menu;
@@ -25,17 +21,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
-import es.uniovi.eii.favmov.datos.server.ServerDataMapper;
+import es.uniovi.eii.favmov.datos.bd.MovieDataSource;
 import es.uniovi.eii.favmov.datos.server.moviedetails.MovieDetail;
-import es.uniovi.eii.favmov.datos.server.moviedetails.Result;
-import es.uniovi.eii.favmov.datos.server.moviedetails.Videos;
-import es.uniovi.eii.favmov.datos.server.movielist.MovieData;
-import es.uniovi.eii.favmov.datos.server.movielist.MovieListResult;
-import es.uniovi.eii.favmov.fragments.ActoresFragment;
-import es.uniovi.eii.favmov.fragments.ArgumentoFragment;
-import es.uniovi.eii.favmov.fragments.InfoFragment;
+import es.uniovi.eii.favmov.ui.fragments.ActoresFragment;
+import es.uniovi.eii.favmov.ui.fragments.ArgumentoFragment;
+import es.uniovi.eii.favmov.ui.fragments.InfoFragment;
 import es.uniovi.eii.favmov.model.Pelicula;
 import es.uniovi.eii.favmov.remote.ApiUtils;
 import es.uniovi.eii.favmov.remote.TheMovieDBApi;
@@ -44,10 +34,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static es.uniovi.eii.favmov.datos.server.ServerDataMapper.convertMovieDetailToDomain;
 import static es.uniovi.eii.favmov.remote.ApiUtils.API_KEY;
 import static es.uniovi.eii.favmov.remote.ApiUtils.LANGUAGE;
 
 public class ShowMovieActivity extends AppCompatActivity {
+
+    private static final String BASE_URL_IMG= "https://image.tmdb.org/t/p/";
+    private static final String IMG_W342= "w342";
+    private static final String IMG_ORIGINAL= "original";
 
     private Pelicula pelicula;
 
@@ -121,27 +116,8 @@ public class ShowMovieActivity extends AppCompatActivity {
 
                         //Convertir datos de la api a clases del modelo
 
-                        String urlTrailer = null;
-                        List<Result> videos = data.getVideos().getResults();
-                        for (Result video : videos) {
-                            if (video.getSite().toLowerCase().equals("youtube")) {
-                                urlTrailer = "https://www.youtube.com/watch?v=" + video.getKey();
-                                break;
-                            }
-                        }
-
-                        pelicula.setUrlTrailer(urlTrailer);
-
-
-//                        listPelicula = ServerDataMapper.convertMovieListToDomain(listMovieData);
-//
-//                        //Esto ye super cutre pero ye pa presentar los datos
-//                        listaPeliculasView = (RecyclerView) findViewById(R.id.recyclerView);
-//                        listaPeliculasView.setHasFixedSize(true);
-//
-//                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-//                        listaPeliculasView.setLayoutManager(layoutManager);
-
+                        convertMovieDetailToDomain(data, pelicula);
+                        mostrarDatos(pelicula);
 
                         break;
                     default:
@@ -171,16 +147,33 @@ public class ShowMovieActivity extends AppCompatActivity {
 //            return true;
 //        }
 
-        if (id == R.id.compartir) {
-            Conexion conexion = new Conexion(getApplicationContext());
-            if (conexion.compruebaConexion()) {
-                compartirPeli();
-            } else {
-                Toast.makeText(getApplicationContext(), R.string.error_conexion, Toast.LENGTH_LONG).show();
-            }
-
+        switch(id){
+            case R.id.compartir:
+                Conexion conexion = new Conexion(getApplicationContext());
+                if (conexion.compruebaConexion()) {
+                    compartirPeli();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.error_conexion, Toast.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.hacer_favorita:
+                addMovieToFavourites();
+                break;
+            default:
+                break;
         }
+
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addMovieToFavourites(){
+        MovieDataSource movieDataSource = new MovieDataSource(getApplicationContext());
+        movieDataSource.open();
+
+        movieDataSource.createpelicula(pelicula);
+
+        movieDataSource.close();
     }
 
     public void compartirPeli() {
@@ -210,7 +203,8 @@ public class ShowMovieActivity extends AppCompatActivity {
             String fecha = pelicula.getFecha();
             toolBarLayout.setTitle(pelicula.getTitulo() + " (" + fecha.substring(fecha.lastIndexOf('/') + 1) + ")");
 
-            Picasso.get().load(pelicula.getUrlFondo()).into(imagenFondo);
+            String urlFondo= BASE_URL_IMG + IMG_ORIGINAL + pelicula.getUrlFondo();
+            Picasso.get().load(urlFondo).into(imagenFondo);
 
             InfoFragment info = new InfoFragment();
             Bundle args = new Bundle();

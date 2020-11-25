@@ -13,11 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".MainActivityPrincipal"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainRecycler">
-
-        </activity>
+            android:parentActivityName=".MainRecycler"></activity>
         <activity
             android:name=".ShowMovieActivity"
             android:label="@string/title_activity_show_movie"
@@ -26,11 +34,7 @@
             android:name=".MainRecycler"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".CategoryActivity" />
         <activity android:name=".MainActivity">

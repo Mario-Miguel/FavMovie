@@ -1,4 +1,4 @@
-package es.uniovi.eii.favmov.fragments;
+package es.uniovi.eii.favmov.ui.fragments;
 
 import android.os.Bundle;
 
@@ -16,6 +16,10 @@ import es.uniovi.eii.favmov.R;
 
 
 public class InfoFragment extends Fragment {
+
+    private static final String BASE_URL_IMG= "https://image.tmdb.org/t/p/";
+    private static final String IMG_W342= "w342";
+    private static final String IMG_ORIGINAL= "original";
 
     public static final String ESTRENO = "estreno";
     public static final String DURACION = "duracion";
@@ -35,8 +39,8 @@ public class InfoFragment extends Fragment {
         if(args != null){
             txtEstreno.setText(args.getString(ESTRENO));
             txtDuracion.setText(args.getString(DURACION));
-
-            Picasso.get().load(args.getString(CARATULA)).into(imgCaratula);
+            String urlCaratula= BASE_URL_IMG + IMG_W342 + args.getString(CARATULA);
+            Picasso.get().load(urlCaratula).into(imgCaratula);
         }
 
 

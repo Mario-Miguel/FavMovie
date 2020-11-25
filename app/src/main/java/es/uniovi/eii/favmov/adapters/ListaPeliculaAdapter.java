@@ -19,6 +19,9 @@ import es.uniovi.eii.favmov.model.Pelicula;
 
 public class ListaPeliculaAdapter extends RecyclerView.Adapter<ListaPeliculaAdapter.PeliculaViewHolder> {
 
+    private static final String BASE_URL_IMG= "https://image.tmdb.org/t/p/";
+    private static final String IMG_W342= "w342";
+    private static final String IMG_ORIGINAL= "original";
 
     //Interfaz para manejar el evento de click
     public interface OnItemClickListener{
@@ -73,10 +76,13 @@ public class ListaPeliculaAdapter extends RecyclerView.Adapter<ListaPeliculaAdap
             fecha.setText(pelicula.getFecha());
             // cargar imagen
 
-            if(!pelicula.getUrlCaratula().isEmpty())
-                Picasso.get().load(pelicula.getUrlCaratula()).into(imagen);
-            else
+            if(!pelicula.getUrlCaratula().isEmpty()) {
+                String urlCaratula= BASE_URL_IMG + IMG_W342 + pelicula.getUrlCaratula();
+                Picasso.get().load(urlCaratula).into(imagen);
+            } else {
+
                 imagen.setImageResource(R.drawable.pelicula_sin_imagen);
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
